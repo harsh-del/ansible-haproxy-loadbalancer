@@ -1,0 +1,31 @@
+- hosts: proxy
+  tasks:
+  - name: "Installing software"  
+    package:
+      name: "haproxy"
+
+  - name: "Configuring conf file"
+    template:
+      src: "haproxy.cfg"
+      dest: "/etc/haproxy/haproxy.cfg" 
+  
+  - name: "Starting services"
+    service:
+      name: "haproxy"
+      state: started
+
+- hosts: nodes
+  tasks:
+  - name: "Installing software"
+    package:
+      name: "httpd"
+
+  - name: "copying folder"
+    copy:
+      src: "index.php"
+      dest: "/var/www/html"
+   
+  - name: "starting services"
+    service:
+      service: "httpd"
+      state: started  
