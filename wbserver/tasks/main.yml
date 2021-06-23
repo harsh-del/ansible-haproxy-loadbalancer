@@ -1,0 +1,16 @@
+---
+# tasks file for wbserver
+
+- name: "Installing software"
+  package:
+    name: "httpd"
+
+- name: "copying folder"
+  copy:
+    src: "index.php"
+    dest: "/var/www/html"
+   
+- name: "starting services"
+  service:
+    service: "httpd"
+    state: started  

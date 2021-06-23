@@ -1,0 +1,7 @@
+- hosts: instance
+  roles:
+  - role: "wbserver"
+
+- hosts: proxy
+  roles:
+  - role: "hproxy"
